@@ -1,3 +1,6 @@
 {
-    "azureAutomation.directory.basePath": "Users/dergin1/AzureAutomation"
+    "azureAutomation.directory.basePath": "",
+    "workbench.editor.autoLockGroups": {
+        "default": true
+    }
 }
