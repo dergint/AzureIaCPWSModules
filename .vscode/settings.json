@@ -2,5 +2,9 @@
     "azureAutomation.directory.basePath": "",
     "workbench.editor.autoLockGroups": {
         "default": true
+    },
+    "sonarlint.connectedMode.project": {
+        "connectionId": "dergint",
+        "projectKey": "dergint_AzureIaCPWSModules"
     }
 }
