@@ -35,7 +35,6 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
-      - id: iac-scan
       - name: Run Prisma Cloud 
         id: prisma-cloud
         uses: bridgecrewio/checkov-action@master
@@ -43,7 +42,6 @@ jobs:
           PRISMA_API_URL: https://api.eu.prismacloud.io
         with:
           api-key: ${{ secrets.BC_API_KEY }}
-          # Scan sources on Prisma Cloud are uniquely identified by their name
           asset_name: 'my-asset-name'
           # The service need to know the type of IaC being scanned
           template_type: 'CFT'
