@@ -42,18 +42,16 @@ jobs:
           PRISMA_API_URL: https://api.eu.prismacloud.io
         with:
           api-key: ${{ secrets.BC_API_KEY }}
-          asset_name: 'my-asset-name'
-          # The service need to know the type of IaC being scanned
-          template_type: 'CFT'
-      - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@v3
+  
+    #  - name: Upload SARIF file
+    #    uses: github/codeql-action/upload-sarif@v3
         # Results are generated only on a success or failure
         # this is required since GitHub by default won't run the next step
         # when the previous one has failed.
         # And alternative it to add `continue-on-error: true` to the previous step
-        if: success() || failure()
-        with:
+     #   if: success() || failure()
+      #  with:
           # The SARIF Log file name is configurable on scan action
           # therefore the file name is best read from the steps output
-          sarif_file: results.sarif
+      #    sarif_file: results.sarif
           #sarif_file: ${{ steps.prisma-cloud.outputs.prisma-cloud_result_sarif_path }}
