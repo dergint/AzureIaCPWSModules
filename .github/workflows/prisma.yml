@@ -55,4 +55,4 @@ jobs:
         with:
           # The SARIF Log file name is configurable on scan action
           # therefore the file name is best read from the steps output
-          sarif_file: ${{ steps.iac-scan.outputs.iac_scan_result_sarif_path }}
+          sarif_file: ${{ steps.prisma-cloud.outputs.prisma-cloud_result_sarif_path }}
