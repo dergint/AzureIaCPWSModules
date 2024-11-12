@@ -3,5 +3,9 @@
     "sonarlint.connectedMode.project": {
         "connectionId": "dergint",
         "projectKey": "dergint_AzureIaCPWSModules"
-    }
+    },
+    "prismaCloud.accessKey": "e06ccaec-5cd8-40fe-985d-c811872dcccf",
+    "prismaCloud.secretKey": "iGE/XtVYa1tlZFjFM69dz2vzbvw=",
+    "prismaCloud.prismaURL": "https://api.eu.prismacloud.io",
+    "prismaCloud.checkovVersion": "latest"
 }
