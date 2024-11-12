@@ -1,3 +1,7 @@
 {
-    "azureAutomation.directory.basePath": "Users/dergin1/AzureAutomation"
+    "azureAutomation.directory.basePath": "Users/dergin1/AzureAutomation",
+    "sonarlint.connectedMode.project": {
+        "connectionId": "dergint",
+        "projectKey": "dergint_AzureIaCPWSModules"
+    }
 }
