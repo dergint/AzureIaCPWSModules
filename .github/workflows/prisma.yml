@@ -48,7 +48,10 @@ jobs:
           PRISMA_API_URL: https://api.eu.prismacloud.io
         with:
           api-key: ${{ secrets.BC_API_KEY }}
-  
+      - name: Upload SARIF to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: results.sarif
     #  - name: Upload SARIF file
     #    uses: github/codeql-action/upload-sarif@v3
         # Results are generated only on a success or failure
@@ -59,5 +62,5 @@ jobs:
       #  with:
           # The SARIF Log file name is configurable on scan action
           # therefore the file name is best read from the steps output
-      #    sarif_file: results.sarif
+     
           #sarif_file: ${{ steps.prisma-cloud.outputs.prisma-cloud_result_sarif_path }}
