@@ -37,10 +37,10 @@ jobs:
       security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
       actions: read # only required for a private repository by github/codeql-action/upload-sarif to get the Action run status
     runs-on: ubuntu-latest
-    name: Run Prisma Cloud IaC Scan to check
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
+
       - name: Run Prisma Cloud 
         id: prisma-cloud
         uses: bridgecrewio/checkov-action@master
@@ -48,19 +48,3 @@ jobs:
           PRISMA_API_URL: https://api.eu.prismacloud.io
         with:
           api-key: ${{ secrets.BC_API_KEY }}
-      - name: Upload SARIF to GitHub Code Scanning
-        uses: github/codeql-action/upload-sarif@v2
-        with:
-          sarif_file: results.sarif
-    #  - name: Upload SARIF file
-    #    uses: github/codeql-action/upload-sarif@v3
-        # Results are generated only on a success or failure
-        # this is required since GitHub by default won't run the next step
-        # when the previous one has failed.
-        # And alternative it to add `continue-on-error: true` to the previous step
-     #   if: success() || failure()
-      #  with:
-          # The SARIF Log file name is configurable on scan action
-          # therefore the file name is best read from the steps output
-     
-          #sarif_file: ${{ steps.prisma-cloud.outputs.prisma-cloud_result_sarif_path }}
