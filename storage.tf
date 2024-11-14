@@ -43,6 +43,7 @@ resource "azurerm_storage_account" "example" {
   tags = {
     git_file = "terraform/azure/storage.tf"
   }
+  allow_nested_items_to_be_public = true
 }
 
 resource "azurerm_storage_account" "data" {
