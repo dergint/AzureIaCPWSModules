@@ -75,6 +75,7 @@ resource "azurerm_storage_account" "data" {
   tags = {
     git_file = "terraform/azure/storage.tf"
   }
+  allow_nested_items_to_be_public = true
 }
 
 resource "azurerm_storage_account_network_rules" "test" {
