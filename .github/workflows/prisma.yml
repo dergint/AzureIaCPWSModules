@@ -1,4 +1,4 @@
-name: Prisma Cloud IaC Scan
+name: Checkov IaC Scan 
 
 on:
   push:
