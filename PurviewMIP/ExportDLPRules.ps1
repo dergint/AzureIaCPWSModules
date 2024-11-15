@@ -51,3 +51,4 @@ $SaveFilePath = "$FilePath\SkyDlpRuleExport_$Date.json"
 $skydlprulesexport | ConvertTo-Json -Depth 100 | Out-File -Encoding UTF8 -FilePath $SaveFilePath
 Write-Output "DLP Export Completed"
 Exit
+#script
