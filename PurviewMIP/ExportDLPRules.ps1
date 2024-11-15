@@ -41,7 +41,7 @@ else {
 
 try {
     Write-Output "Getting DLP Policy Rules"
-    $skydlprulesexport = Get-DlpComplianceRule | Select-Object DisplayName, ReportSeverityLevel, BlockAccess, GenerateAlert, Disabled, Mode
+    $skydlprulesexport = Get-DlpComplianceRule | Select-Object DisplayName, ParentPolicyName, ReportSeverityLevel, BlockAccess, GenerateAlert, Disabled, Mode
 }
 catch {
     Write-Error "Failed to get DLP Policy Rules: $_"
@@ -50,5 +50,18 @@ catch {
 $SaveFilePath = "$FilePath\SkyDlpRuleExport_$Date.json"
 $skydlprulesexport | ConvertTo-Json -Depth 100 | Out-File -Encoding UTF8 -FilePath $SaveFilePath
 Write-Output "DLP Export Completed"
-Exit
-#script
+
+# After export completion move the files to reporting location.
+Write-Host "DLPRules are exported to "$SaveFilePath""
+$ReportFilePath = Read-Host "Enter path to reports directory"
+
+Copy-Item "$SaveFilePath" "$ReportFilePath\SkyDLPRules.json"
+
+Write-Host = "Latest DLP export file now moved to report folder "$ReportFilePath" you can now refresh PowerBI report"
+
+
+
+
+
+
+
