@@ -15,8 +15,10 @@ else {
 }
 
 #Variables
-$FilePath = Read-Host "Enter the name of the folder path you want to save the report"
+$ConfigFolderPath = Read-Host "Enter the name of the folder path you want to save the complete configuration export"
 $Date = $(Get-Date -f yyyy-MMM-dd)
+$ReportFolderPath = Read-Host "Enter path to reports directory"
+
 
 #Connect to Purview SCC to as interactive logon
 
@@ -41,14 +43,26 @@ else {
 
 try {
     Write-Output "Getting DLP Policy Rules"
-    $skydlprulesexport = Get-DlpComplianceRule | Select-Object DisplayName, ReportSeverityLevel, BlockAccess, GenerateAlert, Disabled, Mode
+    #option1- $skydlprulesexport = Get-DlpComplianceRule | Select-Object DisplayName, ParentPolicyName, ReportSeverityLevel, BlockAccess, GenerateAlert, Disabled, Mode
+    $skydlprulesexport = Get-DlpComplianceRule 
 }
 catch {
     Write-Error "Failed to get DLP Policy Rules: $_"
     exit
 }
-$SaveFilePath = "$FilePath\SkyDlpRuleExport_$Date.json"
-$skydlprulesexport | ConvertTo-Json -Depth 100 | Out-File -Encoding UTF8 -FilePath $SaveFilePath
-Write-Output "DLP Export Completed"
-Exit
-#script
+$SaveConfigFilePath = "$ConfigFolderPath\SkyDlpRuleExport_$Date.json"
+$SaveReportFilePath = "$ReportFolderPath\SkyDLPRules.json"
+$skydlprulesexport | ConvertTo-Json -Depth 100 | Out-File -Encoding UTF8 -FilePath $SaveConfigFilePath
+$skydlprulesexport | Select-Object DisplayName, ParentPolicyName, ReportSeverityLevel, BlockAccess, GenerateAlert, Disabled, Mode | ConvertTo-Json -Depth 100 | Out-File -Encoding UTF8 -FilePath $SaveReportFilePath
+Write-Output "DLP Rule Export Completed"
+
+
+
+
+
+
+
+
+
+
+

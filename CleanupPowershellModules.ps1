@@ -29,3 +29,10 @@ else {
 $modulesAfterDeletion = Get-Module -ListAvailable | Where-Object { $_.Name -like "$modulesToCheck*"}
 Write-Host "These are the modules remaining" $modulesAfterDeletion -ForegroundColor Green
 $modulesAfterDeletion | Format-Table -AutoSize
+
+
+
+<#[System.AppDomain]::CurrentDomain.GetAssemblies() |
+  Where-Object { $_.FullName -like "Microsoft.Graph.Core*" } |
+  Select FullName, Location
+#>
