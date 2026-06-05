@@ -37,7 +37,20 @@ $InactiveUsers = $Users | Where-Object {
 # Display results in console
 $InactiveUsers | Format-Table -AutoSize
 
-# Export filtered results to CSV
-$InactiveUsers | Export-Csv -Path "InactiveUsers_Last30Days.csv" -NoTypeInformation
+# Prompt user for output path
+$OutputPath = Read-Host "Enter the full path to save the CSV report (e.g. C:\Reports\InactiveUsers.csv)"
+if ([string]::IsNullOrWhiteSpace($OutputPath)) {
+    $OutputPath = "InactiveUsers_Last90Days.csv"
+    Write-Host "No path provided. Saving to current directory as '$OutputPath'."
+}
 
-Write-Host "Report saved as InactiveUsers_Last30Days.csv"
+# Create output directory if it doesn't exist
+$OutputDir = Split-Path -Path $OutputPath -Parent
+if ($OutputDir -and !(Test-Path -Path $OutputDir)) {
+    New-Item -ItemType Directory -Path $OutputDir -Force | Out-Null
+}
+
+# Export filtered results to CSV
+$InactiveUsers | Export-Csv -Path $OutputPath -NoTypeInformation
+
+Write-Host "Report saved as $OutputPath"
